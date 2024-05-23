@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    gap: 4px;
+    flex-wrap: nowrap;
+    align-items: center;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.name {
+    
+    text-wrap: nowrap;
+}
+
+.icon {
+    width: 16px;
+}
