@@ -41,17 +41,16 @@ export const searchMoviesByName = (search: string, page = 1): Promise<MoviesResp
             },
         })
         .then(({ data }) => {
-            const dataWithKeysInLowerCase = data.Search.map(movie => {
-                return Object.fromEntries(
-                    Object.entries(movie).map(([k, v]) => [k.toLowerCase(), v])
-                ) as Movie;
-            })
-
             return data.Response === "True" ? {
-                data: dataWithKeysInLowerCase || [],
+                data: data.Search.map(movie => {
+                    return Object.fromEntries(
+                        Object.entries(movie).map(([k, v]) => [k.toLowerCase(), v])
+                    ) as Movie;
+                }) || [],
                 totalResults: Number(data.totalResults) || 0,
             } : {
                 error: data.Error
             }
+
         })
 }
